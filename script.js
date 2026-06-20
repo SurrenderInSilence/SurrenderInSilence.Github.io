@@ -22,6 +22,35 @@
     });
   }
 
+  /* ── Subscribe scroll: wait for gallery layout before scrolling ─── */
+  document.querySelectorAll('[href="#mailing"]').forEach(function (link) {
+    link.addEventListener('click', function (e) {
+      e.preventDefault();
+      var target = document.getElementById('mailing');
+      if (!target) return;
+
+      var imgs    = Array.from(document.querySelectorAll('.sis-gimg'));
+      var pending = imgs.filter(function (img) { return !img.complete; });
+
+      if (pending.length === 0) {
+        target.scrollIntoView({ behavior: 'smooth' });
+        return;
+      }
+
+      // Switch unloaded images to eager so they download immediately
+      pending.forEach(function (img) { img.loading = 'eager'; });
+
+      Promise.all(pending.map(function (img) {
+        return new Promise(function (resolve) {
+          img.addEventListener('load',  resolve, { once: true });
+          img.addEventListener('error', resolve, { once: true });
+        });
+      })).then(function () {
+        target.scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+  });
+
   /* ── Gallery lightbox ────────────────────────────────── */
   var galleryGrid  = document.getElementById('gallery-grid');
   var lightbox     = document.getElementById('lightbox');
