@@ -191,6 +191,17 @@ a { color: inherit; }
   box-shadow: 0 8px 26px -10px rgba(160,100,230,.8);
 }
 
+.nav-subscribe {
+  background: transparent !important;
+  border: 1px solid rgba(185,140,255,.45);
+  box-shadow: none !important;
+  color: var(--accent) !important;
+}
+.nav-subscribe:hover {
+  background: rgba(185,140,255,.12) !important;
+  border-color: var(--accent);
+}
+
 .nav-hamburger {
   display: none;
   background: none;
@@ -224,6 +235,11 @@ a { color: inherit; }
   text-decoration: none;
   padding: 16px var(--pad-x);
   border-bottom: 1px solid var(--border-faint);
+}
+
+.drawer-item--subscribe {
+  color: var(--accent);
+  font-weight: 700;
 }
 
 /* Scroll-margin compensates for sticky nav */
@@ -1109,6 +1125,13 @@ a { color: inherit; }
   .hero-content { bottom: 60px; }
   .hero-title   { font-size: 54px; }
   .hero-tagline { font-size: 19px; }
+  .hero-pill {
+    font-size: 10px;
+    letter-spacing: .22em;
+    padding: 6px 13px;
+    gap: 7px;
+    margin-bottom: 14px;
+  }
 
   /* Music */
   .music-grid  { grid-template-columns: 1fr; }
