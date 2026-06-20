@@ -851,6 +851,7 @@ a { color: inherit; }
 
 .sis-gimg {
   width: 100%;
+  aspect-ratio: 3/2;
   border-radius: 6px;
   margin-bottom: 16px;
   break-inside: avoid;
